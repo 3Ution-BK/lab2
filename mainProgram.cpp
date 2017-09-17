@@ -35,4 +35,5 @@ int main(){
 	inFile.close();
 	outFile.close();
 
+	return 0;
 }
