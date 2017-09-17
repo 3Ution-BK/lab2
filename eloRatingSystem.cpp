@@ -43,12 +43,14 @@ int Elo_Ratio::getR_B(){
 
 void Elo_Ratio::calRatio(double S){
 	double R_temp;
+	int R_A_new, R_B_new;
 	R_temp = R_A +(K * (S - (1 / (1 + pow(10.0, (static_cast<double> (R_B - R_A) / 400))))));
-	R_A = (((static_cast<double> (R_temp - static_cast<int> (R_temp))) >= 0.5)? static_cast<int> (R_temp + 1):static_cast<int> (R_temp));
+	R_A_new = (((static_cast<double> (R_temp - static_cast<int> (R_temp))) >= 0.5)? static_cast<int> (R_temp + 1):static_cast<int> (R_temp));
 
 	R_temp = R_B + (K * ((1 - S) - (1 / (1 + pow(10.0, (static_cast<double> (R_A - R_B) / 400))))));
-	R_B = (((static_cast<double> (R_temp - static_cast<int> (R_temp))) >= 0.5)? static_cast<int> (R_temp + 1):static_cast<int> (R_temp));
+	R_B_new = (((static_cast<double> (R_temp - static_cast<int> (R_temp))) >= 0.5)? static_cast<int> (R_temp + 1):static_cast<int> (R_temp));
 
-
+	R_A = R_A_new;
+	R_B = R_B_new;
 }
 
